@@ -15,29 +15,30 @@
     <div id="overlay">
         <div class="welcome-box">
             <h1>Hi Tropa... ❤️</h1>
-            <p>I made something special just for you.</p>
+            <p>I couldn't be there to give you flowers in person, so...</p>
             <button id="startBtn">Open Your Gift 🎁</button>
         </div>
     </div>
 
     <div class="main-container" id="mainContent" style="display: none;">
-        
-        <div class="card-container">
-            <div class="polaroid">
-                <img src="images/tropa1.jpg" alt="Tropa" class="tropa-img">
-                <p class="caption">My Valentine 2026</p>
+        <div class="valentine-card">
+            
+            <div class="polaroid-area">
+                <div class="polaroid" id="photoFrame">
+                    <div id="flowerFallContainer"></div>
+                    <img src="images/tropa1.jpg" alt="Tropa" class="tropa-img">
+                    <p class="caption">My Valentine ❤️</p>
+                </div>
             </div>
 
-            <div class="love-letter">
-                <h2>Happy Valentine's Day, Tropa!</h2>
-                <p>
-                    I wanted to create something as beautiful as you are. 
-                    Thank you for being the best part of my life. Every day feels like Valentine's Day with you. ❤️
-                </p>
-                <div class="heart-icon">❤️</div>
+            <div class="interaction-area">
+                <button class="give-flower-btn" onclick="rainFlowers()">Give Tropa Flowers 🌸</button>
+                <div class="message">
+                    <h2>Happy Valentine's Day!</h2>
+                    <p>I wish I was there to hand these to you myself. I love you, Tropa!</p>
+                </div>
             </div>
         </div>
-
     </div>
 
     <script src="script.js"></script>

@@ -1,16 +1,14 @@
 body {
     margin: 0;
-    padding: 0;
-    font-family: 'Georgia', serif;
     background-color: #fff0f3;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #c9184a;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
 }
 
-/* Overlay Styling */
 #overlay {
     position: fixed;
     inset: 0;
@@ -24,7 +22,7 @@ body {
 }
 
 #startBtn {
-    padding: 15px 40px;
+    padding: 15px 35px;
     font-size: 1.2rem;
     border-radius: 50px;
     border: none;
@@ -33,29 +31,16 @@ body {
     color: #ff4d6d;
     font-weight: bold;
     margin-top: 20px;
-    transition: 0.3s;
 }
 
-#startBtn:hover { transform: scale(1.1); }
-
-/* Main Card Layout */
-.card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    animation: fadeIn 1.5s ease-in;
-    padding: 20px;
-}
-
-/* Polaroid Effect */
 .polaroid {
+    position: relative; /* Crucial for the falling flowers */
     background: white;
     padding: 15px 15px 40px 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     transform: rotate(-2deg);
-    max-width: 280px;
-    margin-bottom: 30px;
+    max-width: 320px;
+    overflow: hidden; /* Keeps flowers inside the frame */
 }
 
 .tropa-img {
@@ -64,37 +49,35 @@ body {
     display: block;
 }
 
-.caption {
-    margin-top: 15px;
-    font-style: italic;
+/* The Falling Flower Style */
+.falling-flower {
+    position: absolute;
+    top: -50px;
+    width: 40px;
+    height: auto;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.give-flower-btn {
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
     font-size: 1.1rem;
+    cursor: pointer;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(255, 77, 109, 0.4);
+    transition: 0.3s;
 }
 
-/* Love Letter */
-.love-letter {
-    max-width: 400px;
-    line-height: 1.6;
-}
+.give-flower-btn:hover { transform: scale(1.05); background: #c9184a; }
 
-.love-letter h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
+.message { text-align: center; color: #c9184a; }
 
-.heart-icon {
-    font-size: 2.5rem;
-    margin-top: 20px;
-    animation: pulse 1.5s infinite;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+/* Animation for the fall */
+@keyframes fallDown {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(400px) rotate(360deg); opacity: 0.8; }
 }
