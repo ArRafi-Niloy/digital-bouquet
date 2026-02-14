@@ -1,53 +1,46 @@
-const startBtn = document.getElementById('startBtn');
-const overlay = document.getElementById('overlay');
-const mainContent = document.getElementById('mainContent');
-const bgMusic = document.getElementById('bgMusic');
-const flowerContainer = document.getElementById('flowerFallContainer');
+document.addEventListener('DOMContentLoaded', () => {
+    const startBtn = document.getElementById('startBtn');
+    const overlay = document.getElementById('overlay');
+    const mainContent = document.getElementById('mainContent');
+    const bgMusic = document.getElementById('bgMusic');
 
-// 1. OPEN GIFT LOGIC
-if (startBtn) {
-    startBtn.addEventListener('click', () => {
-        overlay.style.display = 'none';
-        mainContent.style.display = 'flex';
-        
-        // Play music (if it exists)
-        if (bgMusic) {
-            bgMusic.play().catch(err => console.log("Music play blocked by browser"));
-        }
-    });
-}
+    if (startBtn) {
+        startBtn.addEventListener('click', () => {
+            overlay.style.display = 'none';
+            mainContent.style.display = 'flex';
+            if (bgMusic) {
+                bgMusic.play().catch(() => console.log("Music blocked"));
+            }
+        });
+    }
+});
 
-// 2. RAIN FLOWERS LOGIC
 function rainFlowers() {
-    // List your 5 flower names here
+    const flowerContainer = document.getElementById('flowerFallContainer');
+    
+    // UPDATED: These now match your Capitalized filenames F1, F2...
+    // If your files are .jpg, change .png to .jpg below!
     const flowerFiles = ['F1.png', 'F2.png', 'F3.png', 'F4.png', 'F5.png'];
 
     for (let i = 0; i < 20; i++) {
         setTimeout(() => {
             const flower = document.createElement('img');
+            const randomFile = flowerFiles[Math.floor(Math.random() * flowerFiles.length)];
             
-            // Randomly pick a flower from your list
-            const randomFileName = flowerFiles[Math.floor(Math.random() * flowerFiles.length)];
-            
-            flower.src = `images/${randomFileName}`;
+            flower.src = `images/${randomFile}`;
             flower.classList.add('falling-flower');
+            flower.style.left = Math.random() * 90 + "%";
             
-            // Styles for the fall
-            const startX = Math.random() * 90; // Stay slightly away from edges
-            flower.style.left = startX + "%";
-            
-            const duration = 2 + Math.random() * 3;
+            const duration = 2.5 + Math.random() * 2.5;
             flower.style.animation = `fallDown ${duration}s linear forwards`;
             
-            // If the image fails to load, don't break the site
-            flower.onerror = () => flower.remove();
-
+            flower.onerror = () => flower.style.display = 'none';
+            
             if (flowerContainer) {
                 flowerContainer.appendChild(flower);
             }
-            
-            // Remove flower after animation ends
-            setTimeout(() => { flower.remove(); }, duration * 1000);
+
+            setTimeout(() => flower.remove(), duration * 1000);
         }, i * 150);
     }
 }
