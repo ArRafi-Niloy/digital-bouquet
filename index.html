@@ -4,7 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Tropa ❤️</title>
-    <link rel="stylesheet" href="style.css?v=valentine_final">
+    <style>
+        body {
+            margin: 0;
+            background-color: #fff0f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            color: #c9184a;
+        }
+
+        /* Initial Screen */
+        #overlay {
+            position: fixed;
+            inset: 0;
+            background: #ff85a1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            text-align: center;
+            color: white;
+        }
+
+        .welcome-box button {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            background: white;
+            color: #ff4d6d;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Main Page */
+        .main-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            animation: fadeIn 1.5s;
+        }
+
+        .polaroid {
+            position: relative;
+            background: white;
+            padding: 15px 15px 45px 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: rotate(-2deg);
+            max-width: 300px;
+            z-index: 1;
+        }
+
+        #flowerFallContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .tropa-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 2px;
+        }
+
+        .falling-flower {
+            position: absolute;
+            top: -60px;
+            z-index: 11;
+            background: transparent !important; /* Forces no background */
+            border: none !important;
+        }
+
+        .give-flower-btn {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 25px 0;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
+        }
+
+        .message { text-align: center; max-width: 400px; padding: 0 20px; }
+
+        @keyframes fallDown {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
 </head>
 <body>
 
@@ -15,28 +119,23 @@
     <div id="overlay">
         <div class="welcome-box">
             <h1>Hi Tropa... ❤️</h1>
-            <p>I made something special for you.</p>
-            <button id="startBtn" onclick="openGift()">Open Your Gift 🎁</button>
+            <p>I wish I could be there in person.</p>
+            <button onclick="openGift()">Open Your Gift 🎁</button>
         </div>
     </div>
 
-    <div class="main-container" id="mainContent" style="display: none;">
-        <div class="valentine-card">
-            <div class="polaroid-area">
-                <div class="polaroid" id="photoFrame">
-                    <div id="flowerFallContainer"></div>
-                    <img src="images/tropa1.jpg" alt="Tropa" class="tropa-img">
-                    <p class="caption">My Valentine ❤️</p>
-                </div>
-            </div>
+    <div class="main-container" id="mainContent">
+        <div class="polaroid">
+            <div id="flowerFallContainer"></div>
+            <img src="images/tropa1.jpg" alt="Tropa" class="tropa-img">
+            <p style="text-align:center; font-style: italic; margin-top: 15px;">My Valentine ❤️</p>
+        </div>
 
-            <div class="interaction-area">
-                <button class="give-flower-btn" onclick="rainFlowers()">Give Tropa Flowers 🌸</button>
-                <div class="message">
-                    <h2>Happy Valentine's Day!</h2>
-                    <p>I wish I was there to hand these to you myself. I love you, Tropa!</p>
-                </div>
-            </div>
+        <button class="give-flower-btn" onclick="rainFlowers()">Give Tropa Flowers 🌸</button>
+        
+        <div class="message">
+            <h2>Happy Valentine's Day!</h2>
+            <p>You deserve all the flowers in the world. I love you!</p>
         </div>
     </div>
 
@@ -45,11 +144,41 @@
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('mainContent').style.display = 'flex';
             const music = document.getElementById('bgMusic');
-            if (music) {
-                music.play().catch(() => console.log("Music play blocked"));
+            if (music) music.play().catch(() => {});
+        }
+
+        function rainFlowers() {
+            const container = document.getElementById('flowerFallContainer');
+            // EXACT names from your folder
+            const flowers = ['F1.png', 'F2.png', 'F3.png', 'F4.png', 'F5.png'];
+
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const img = document.createElement('img');
+                    const randomFile = flowers[Math.floor(Math.random() * flowers.length)];
+                    
+                    // The ?cache= forces the browser to reload the transparency correctly
+                    img.src = `images/${randomFile}?cache=${Math.random()}`;
+                    img.className = 'falling-flower';
+                    img.style.left = Math.random() * 90 + "%";
+                    
+                    // Vary sizes
+                    const size = 30 + Math.random() * 30;
+                    img.style.width = size + "px";
+                    
+                    const duration = 2 + Math.random() * 3;
+                    img.style.animation = `fallDown ${duration}s linear forwards`;
+                    
+                    // If image fails, hide it
+                    img.onerror = function() { this.style.display = 'none'; };
+                    
+                    container.appendChild(img);
+                    
+                    // Clean up
+                    setTimeout(() => img.remove(), duration * 1000);
+                }, i * 120);
             }
         }
     </script>
-    <script src="script.js?v=valentine_final"></script>
 </body>
 </html>
