@@ -1,33 +1,53 @@
+const startBtn = document.getElementById('startBtn');
+const overlay = document.getElementById('overlay');
+const mainContent = document.getElementById('mainContent');
+const bgMusic = document.getElementById('bgMusic');
+const flowerContainer = document.getElementById('flowerFallContainer');
+
+// 1. OPEN GIFT LOGIC
+if (startBtn) {
+    startBtn.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        mainContent.style.display = 'flex';
+        
+        // Play music (if it exists)
+        if (bgMusic) {
+            bgMusic.play().catch(err => console.log("Music play blocked by browser"));
+        }
+    });
+}
+
+// 2. RAIN FLOWERS LOGIC
 function rainFlowers() {
-    // List of your 5 flower filenames
+    // List your 5 flower names here
     const flowerFiles = ['F1.png', 'F2.png', 'F3.png', 'F4.png', 'F5.png'];
 
-    for (let i = 0; i < 25; i++) { // Increased count to 25 for a better effect
+    for (let i = 0; i < 20; i++) {
         setTimeout(() => {
             const flower = document.createElement('img');
             
-            // Randomly pick one flower from the list
-            const randomFlower = flowerFiles[Math.floor(Math.random() * flowerFiles.length)];
+            // Randomly pick a flower from your list
+            const randomFileName = flowerFiles[Math.floor(Math.random() * flowerFiles.length)];
             
-            flower.src = `images/${randomFlower}`; 
+            flower.src = `images/${randomFileName}`;
             flower.classList.add('falling-flower');
             
-            // Random horizontal position (0 to 100%)
-            const startX = Math.random() * 100;
+            // Styles for the fall
+            const startX = Math.random() * 90; // Stay slightly away from edges
             flower.style.left = startX + "%";
             
-            // Random size so they aren't all the same
-            const size = 30 + Math.random() * 30; // 30px to 60px
-            flower.style.width = size + "px";
-            
-            // Random fall duration (3 to 6 seconds)
-            const duration = 3 + Math.random() * 3;
+            const duration = 2 + Math.random() * 3;
             flower.style.animation = `fallDown ${duration}s linear forwards`;
             
-            flowerContainer.appendChild(flower);
+            // If the image fails to load, don't break the site
+            flower.onerror = () => flower.remove();
+
+            if (flowerContainer) {
+                flowerContainer.appendChild(flower);
+            }
             
-            // Remove from memory after it finishes falling
+            // Remove flower after animation ends
             setTimeout(() => { flower.remove(); }, duration * 1000);
-        }, i * 150); 
+        }, i * 150);
     }
 }
