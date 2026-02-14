@@ -3,30 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Tropa ❤️</title>
+    <title>For My Tropa ❤️</title>
     <style>
-        body { margin: 0; background: #fff0f3; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: sans-serif; overflow: hidden; }
+        /* Gorgeous Background & Scrolling */
+        body { 
+            margin: 0; 
+            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+            min-height: 100vh;
+            font-family: 'Georgia', serif;
+            overflow-y: auto; /* Allows scrolling */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* Floating Hearts Background Animation */
+        .bg-hearts {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Initial Overlay */
+        #overlay { 
+            position: fixed; inset: 0; 
+            background: #ff4d6d; 
+            display: flex; justify-content: center; align-items: center; 
+            z-index: 1000; color: white; text-align: center; 
+        }
+
+        #startBtn { 
+            padding: 18px 40px; border-radius: 50px; border: none; cursor: pointer; 
+            background: white; color: #ff4d6d; font-weight: bold; font-size: 1.3rem; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: 0.3s;
+        }
+        #startBtn:hover { transform: scale(1.1); }
+
+        /* Content Layout */
+        .main-container { 
+            display: none; 
+            flex-direction: row; /* Side by side on desktop */
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 40px; 
+            max-width: 1100px;
+            width: 100%;
+            animation: fadeIn 2s;
+        }
+
+        /* Polaroid Style */
+        .polaroid-column { flex: 1; min-width: 300px; display: flex; flex-direction: column; align-items: center; }
         
-        #overlay { position: fixed; inset: 0; background: #ff85a1; display: flex; justify-content: center; align-items: center; z-index: 100; color: white; text-align: center; }
-        
-        #startBtn { padding: 15px 30px; border-radius: 50px; border: none; cursor: pointer; background: white; color: #ff4d6d; font-weight: bold; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        
-        .main-container { display: none; flex-direction: column; align-items: center; animation: fadeIn 1s; }
-        
-        .polaroid { position: relative; background: white; padding: 15px 15px 45px 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: rotate(-2deg); max-width: 300px; z-index: 1; }
-        
-        /* This container sits ON TOP of the photo inside the white frame */
-        #flowerFallContainer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 5; }
-        
+        .polaroid { 
+            position: relative; background: white; 
+            padding: 15px 15px 50px 15px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
+            transform: rotate(-3deg); 
+            max-width: 350px; border-radius: 4px;
+        }
+
+        #flowerFallContainer { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            pointer-events: none; overflow: hidden; z-index: 5; 
+        }
+
         .tropa-img { width: 100%; display: block; border-radius: 2px; }
-        
-        .falling-flower { position: absolute; top: -60px; width: 45px; z-index: 10; background: transparent !important; }
-        
-        .give-btn { background: #ff4d6d; color: white; border: none; padding: 15px 30px; border-radius: 30px; cursor: pointer; margin-top: 25px; font-weight: bold; }
+
+        /* Wish Box Style */
+        .wish-box { 
+            flex: 1; min-width: 300px; 
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 30px; border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px dashed #ff4d6d;
+            line-height: 1.6; color: #444;
+        }
+
+        .wish-box h2 { color: #ff4d6d; text-align: center; margin-top: 0; }
+        .wish-box p { margin-bottom: 15px; font-size: 1.1rem; }
+        .bengali-text { font-family: 'Siyam Rupali', Arial, sans-serif; color: #c9184a; font-weight: bold; }
+
+        /* Buttons & Flowers */
+        .falling-flower { position: absolute; top: -60px; z-index: 10; pointer-events: none; }
+        .give-btn { 
+            background: #ff4d6d; color: white; border: none; 
+            padding: 15px 35px; border-radius: 30px; cursor: pointer; 
+            margin-top: 30px; font-weight: bold; font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
 
         @keyframes fallDown {
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+            100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
         }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
@@ -34,22 +104,42 @@
 <body>
     <audio id="bgMusic" loop><source src="music/song.mp3" type="audio/mp3"></audio>
 
+    <div class="bg-hearts" id="bgHearts"></div>
+
     <div id="overlay">
         <div>
             <h1>Hi Tropa... ❤️</h1>
-            <p>I wish I could be there with you today.</p>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">I made this with all my heart for you.</p>
             <button id="startBtn" onclick="openGift()">Open Your Gift 🎁</button>
         </div>
     </div>
 
     <div class="main-container" id="mainContent">
-        <div class="polaroid">
-            <div id="flowerFallContainer"></div>
-            <img src="images/tropa1.jpg" class="tropa-img">
-            <p style="text-align:center; font-style: italic; color: #c9184a;">My Valentine ❤️</p>
+        
+        <div class="polaroid-column">
+            <div class="polaroid">
+                <div id="flowerFallContainer"></div>
+                <img src="images/tropa1.jpg" class="tropa-img">
+                <p style="text-align:center; font-size: 1.4rem; color: #ff4d6d; margin-top: 15px;">My Valentine ❤️</p>
+            </div>
+            <button class="give-btn" onclick="rainFlowers()">Give Tropa Flowers 🌸</button>
         </div>
-        <button class="give-btn" onclick="rainFlowers()">Give Tropa Flowers 🌸</button>
-        <p style="color: #c9184a; margin-top: 15px;">Happy Valentine's Day!</p>
+
+        <div class="wish-box">
+            <h2>From My Heart...</h2>
+            <p>I don’t know why time is running this much fast. Everyday I am seeing butterflies. I can't express how happy I am! How happy I become when I see you!</p>
+            
+            <p class="bengali-text">আমি কখনো ভাবি নাই, আমার weakness গুলা দেখে কেউ আমাকে ভালোবাসবে!</p>
+            <p class="bengali-text">আমি এটা কখনো ভাবি নাই আমাকে আমার মতো কেউ ভালোবাসবে!</p>
+            
+            <p>Ami kichu guchaye bolte pari na. Ami bekub er moto takaye thaki. Vabi j eshob ki dream? Naki shotti shotti shob hocche! Maybe I am in a dream, maybe I am seeing the unimaginable thing that I used to dream.</p>
+            
+            <p><strong>Thank you for making my life meaningful, for making me special.</strong></p>
+            
+            <p class="bengali-text" style="font-size: 1.3rem;">তুমি কেনো আগে আসো নাই?</p>
+            <p style="text-align: center; font-size: 1.5rem; color: #ff4d6d; font-weight: bold;">I LOVE YOU SO MUCH</p>
+        </div>
+
     </div>
 
     <script>
@@ -57,32 +147,48 @@
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('mainContent').style.display = 'flex';
             document.getElementById('bgMusic').play().catch(() => {});
+            createFloatingHearts();
+        }
+
+        // Create random background hearts
+        function createFloatingHearts() {
+            const bg = document.getElementById('bgHearts');
+            for(let i=0; i<20; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.opacity = '0.2';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                bg.appendChild(heart);
+            }
         }
 
         function rainFlowers() {
             const container = document.getElementById('flowerFallContainer');
-            // UPDATED to lowercase to match your files: f1.png, f2.png, etc.
             const flowers = ['f1.png', 'f2.png', 'f3.png', 'f4.png', 'f5.png'];
             
-            for (let i = 0; i < 35; i++) {
+            for (let i = 0; i < 40; i++) {
                 setTimeout(() => {
                     const img = document.createElement('img');
                     const file = flowers[Math.floor(Math.random() * flowers.length)];
                     
-                    // The ?v= forces the browser to re-load the file from GitHub
                     img.src = "images/" + file + "?v=" + Math.random();
                     img.className = 'falling-flower';
                     img.style.left = Math.random() * 90 + "%";
                     
-                    const duration = 2 + Math.random() * 3;
+                    const size = 30 + Math.random() * 30;
+                    img.style.width = size + "px";
+                    
+                    const duration = 2.5 + Math.random() * 3;
                     img.style.animation = "fallDown " + duration + "s linear forwards";
                     
-                    // If image is missing, hide it
                     img.onerror = function() { this.style.display = 'none'; };
                     
                     container.appendChild(img);
                     setTimeout(() => img.remove(), duration * 1000);
-                }, i * 130);
+                }, i * 120);
             }
         }
     </script>
