@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Georgia', serif;
     background-color: #fff0f3;
     display: flex;
     justify-content: center;
@@ -31,63 +31,31 @@ body {
     cursor: pointer;
     background: white;
     color: #ff4d6d;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     font-weight: bold;
-}
-
-/* Layout */
-.content-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    padding: 20px;
-    max-width: 1000px;
-}
-
-.bouquet-container {
-    position: relative;
-    width: 320px;
-    height: 400px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 160px 160px 20px 20px;
-    overflow: hidden;
-    margin-bottom: 15px;
-    border: 2px solid #ffb3c1;
-}
-
-/* Flower Styling */
-.flower-in-bouquet {
-    position: absolute;
-    width: 100px;
-    height: auto;
-    animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.flower-menu {
-    margin: 15px 0;
-}
-
-.menu-item {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 3px solid #ff4d6d;
+    margin-top: 20px;
     transition: 0.3s;
 }
 
-.menu-item:hover { transform: scale(1.2); }
+#startBtn:hover { transform: scale(1.1); }
 
-/* Polaroid Styling for Tropa's Photo */
+/* Main Card Layout */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in;
+    padding: 20px;
+}
+
+/* Polaroid Effect */
 .polaroid {
     background: white;
     padding: 15px 15px 40px 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transform: rotate(-3deg);
-    max-width: 250px;
-    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transform: rotate(-2deg);
+    max-width: 280px;
+    margin-bottom: 30px;
 }
 
 .tropa-img {
@@ -96,22 +64,37 @@ body {
     display: block;
 }
 
+.caption {
+    margin-top: 15px;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+/* Love Letter */
 .love-letter {
-    max-width: 300px;
-    text-align: center;
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+.love-letter h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.heart-icon {
+    font-size: 2.5rem;
     margin-top: 20px;
+    animation: pulse 1.5s infinite;
 }
 
-.reset-btn {
-    background: #ffb3c1;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 20px;
-    color: white;
-    cursor: pointer;
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pop {
-    0% { transform: translateX(-50%) scale(0); }
-    100% { transform: translateX(-50%) scale(1); }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }
