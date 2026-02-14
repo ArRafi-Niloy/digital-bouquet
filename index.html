@@ -15,8 +15,8 @@
     <div id="overlay">
         <div class="welcome-box">
             <h1>Hi Tropa... ❤️</h1>
-            <p>I made something special for you.</p>
-            <button id="startBtn">Open Your Gift</button>
+            <p>I made something special just for you.</p>
+            <button id="startBtn">Open Your Gift 🎁</button>
         </div>
     </div>
 
@@ -24,30 +24,31 @@
         
         <div class="content-wrapper">
             <div class="bouquet-section">
-                <h1 id="title">A Bouquet for Tropa</h1>
+                <h1 class="title">A Bouquet for Tropa</h1>
                 <div class="bouquet-container" id="bouquet">
                     </div>
-                <p id="msg">Click the flower below to build your bouquet!</p>
                 
-                <div class="flower-menu">
-                    <img src="images/flower.jpg" class="menu-item" onclick="addFlower()" alt="Add Flower">
+                <div class="controls">
+                    <p>Click the flower to build your bunch!</p>
+                    <div class="flower-menu">
+                        <img src="images/flower.jpg" class="menu-item" onclick="addFlower()" alt="Add Flower">
+                    </div>
+                    <button class="reset-btn" onclick="resetBouquet()">Start Over</button>
                 </div>
-                
-                <button class="reset-btn" onclick="resetBouquet()">Reset Bouquet</button>
             </div>
 
             <div class="message-section">
-                <div class="photo-frame">
-                    <img src="images/tropa_pic.jpg" class="gf-pic" alt="Tropa">
-                    <p class="caption">My Valentine, Tropa</p>
+                <div class="polaroid">
+                    <img src="images/tropa1.jpg" alt="Tropa" class="tropa-img">
+                    <p class="caption">My Valentine 2026</p>
                 </div>
 
-                <div class="valentine-msg">
+                <div class="love-letter">
                     <h2>Happy Valentine's Day!</h2>
                     <p>
                         Tropa, I wanted to give you flowers that never fade. 
                         Just like this digital bouquet, my love for you keeps growing every day. 
-                        Thank you for being mine. ❤️
+                        Thank you for being the best part of my life. ❤️
                     </p>
                 </div>
             </div>
