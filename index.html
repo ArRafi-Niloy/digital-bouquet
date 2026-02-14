@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Tropa ❤️</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=valentine_final">
 </head>
 <body>
 
@@ -16,13 +16,12 @@
         <div class="welcome-box">
             <h1>Hi Tropa... ❤️</h1>
             <p>I made something special for you.</p>
-            <button id="startBtn">Open Your Gift 🎁</button>
+            <button id="startBtn" onclick="openGift()">Open Your Gift 🎁</button>
         </div>
     </div>
 
     <div class="main-container" id="mainContent" style="display: none;">
         <div class="valentine-card">
-            
             <div class="polaroid-area">
                 <div class="polaroid" id="photoFrame">
                     <div id="flowerFallContainer"></div>
@@ -41,6 +40,16 @@
         </div>
     </div>
 
-    <script src="script.js?v=2"></script>
+    <script>
+        function openGift() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'flex';
+            const music = document.getElementById('bgMusic');
+            if (music) {
+                music.play().catch(() => console.log("Music play blocked"));
+            }
+        }
+    </script>
+    <script src="script.js?v=valentine_final"></script>
 </body>
 </html>
