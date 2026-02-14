@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Bouquet</title>
+    <title>For Tropa ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,22 +13,46 @@
     </audio>
 
     <div id="overlay">
-        <button id="startBtn">Open Your Bouquet 🌸</button>
+        <div class="welcome-box">
+            <h1>Hi Tropa... ❤️</h1>
+            <p>I made something special for you.</p>
+            <button id="startBtn">Open Your Gift</button>
+        </div>
     </div>
 
     <div class="main-container" id="mainContent" style="display: none;">
-        <h1 id="title">For You</h1>
         
-        <div class="bouquet-container" id="bouquet">
+        <div class="content-wrapper">
+            <div class="bouquet-section">
+                <h1 id="title">A Bouquet for Tropa</h1>
+                <div class="bouquet-container" id="bouquet">
+                    </div>
+                <p id="msg">Click the flower below to build your bouquet!</p>
+                
+                <div class="flower-menu">
+                    <img src="images/flower.jpg" class="menu-item" onclick="addFlower()" alt="Add Flower">
+                </div>
+                
+                <button class="reset-btn" onclick="resetBouquet()">Reset Bouquet</button>
             </div>
 
-        <p id="msg">Click the flower below to add to your bouquet!</p>
+            <div class="message-section">
+                <div class="photo-frame">
+                    <img src="images/tropa_pic.jpg" class="gf-pic" alt="Tropa">
+                    <p class="caption">My Valentine, Tropa</p>
+                </div>
 
-        <div class="flower-menu">
-            <img src="images/flower.jpg" class="menu-item" onclick="addFlower()" alt="Pick me">
+                <div class="valentine-msg">
+                    <h2>Happy Valentine's Day!</h2>
+                    <p>
+                        Tropa, I wanted to give you flowers that never fade. 
+                        Just like this digital bouquet, my love for you keeps growing every day. 
+                        Thank you for being mine. ❤️
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <button class="reset-btn" onclick="resetBouquet()">Start Over</button>
     </div>
 
     <script src="script.js"></script>

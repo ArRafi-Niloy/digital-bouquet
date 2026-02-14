@@ -1,90 +1,30 @@
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #fff0f3;
+.content-wrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
+    gap: 40px;
+    padding: 20px;
 }
 
-#overlay {
-    position: fixed;
-    inset: 0;
-    background: #ff85a1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-}
-
-#startBtn {
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
+.photo-frame {
     background: white;
-    color: #ff4d6d;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transform: rotate(3deg); /* Gives it a cute Polaroid look */
+    max-width: 250px;
 }
 
-.main-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.bouquet-container {
-    position: relative;
-    width: 300px;
-    height: 400px;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 150px 150px 20px 20px;
-    margin-bottom: 20px;
-    overflow: hidden; /* Keeps flowers inside the container area */
-}
-
-.flower-in-bouquet {
-    position: absolute;
-    width: 100px; /* Adjust size as needed */
+.gf-pic {
+    width: 100%;
     height: auto;
-    transition: all 0.3s ease;
-    animation: pop 0.3s ease-out;
+    display: block;
+    border-radius: 2px;
 }
 
-.flower-menu {
-    background: white;
-    padding: 10px;
-    border-radius: 50px;
-    margin-bottom: 20px;
-}
-
-.menu-item {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 3px solid #ffb3c1;
-    transition: 0.2s;
-}
-
-.menu-item:hover {
-    transform: scale(1.1);
-    background: #ffe5ec;
-}
-
-.reset-btn {
-    padding: 8px 20px;
-    border-radius: 20px;
-    border: none;
-    background: #ffb3c1;
-    color: white;
-    cursor: pointer;
-}
-
-@keyframes pop {
-    0% { transform: translateX(-50%) scale(0); }
-    100% { transform: translateX(-50%) scale(1); }
+.valentine-msg {
+    max-width: 300px;
+    color: #c9184a;
+    line-height: 1.6;
+    text-align: center;
 }
