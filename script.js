@@ -1,6 +1,6 @@
 function rainFlowers() {
     // List of your 5 flower filenames
-    const flowerFiles = ['f1.png', 'f2.png', 'f3.png', 'f4.png', 'f5.png'];
+    const flowerFiles = ['F1.png', 'F2.png', 'F3.png', 'F4.png', 'F5.png'];
 
     for (let i = 0; i < 25; i++) { // Increased count to 25 for a better effect
         setTimeout(() => {
