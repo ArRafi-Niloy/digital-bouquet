@@ -5,178 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Tropa ❤️</title>
     <style>
-        body {
-            margin: 0;
-            background-color: #fff0f3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-            color: #c9184a;
-        }
-
-        /* Initial Screen */
-        #overlay {
-            position: fixed;
-            inset: 0;
-            background: #ff85a1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            text-align: center;
-            color: white;
-        }
-
-        .welcome-box button {
-            padding: 15px 35px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            background: white;
-            color: #ff4d6d;
-            font-weight: bold;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Main Page */
-        .main-container {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            animation: fadeIn 1.5s;
-        }
-
-        .polaroid {
-            position: relative;
-            background: white;
-            padding: 15px 15px 45px 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transform: rotate(-2deg);
-            max-width: 300px;
-            z-index: 1;
-        }
-
-        #flowerFallContainer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .tropa-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 2px;
-        }
-
-        .falling-flower {
-            position: absolute;
-            top: -60px;
-            z-index: 11;
-            background: transparent !important; /* Forces no background */
-            border: none !important;
-        }
-
-        .give-flower-btn {
-            background: #ff4d6d;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin: 25px 0;
-            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
-        }
-
-        .message { text-align: center; max-width: 400px; padding: 0 20px; }
+        body { margin: 0; background: #fff0f3; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: sans-serif; overflow: hidden; }
+        
+        #overlay { position: fixed; inset: 0; background: #ff85a1; display: flex; justify-content: center; align-items: center; z-index: 100; color: white; text-align: center; }
+        
+        #startBtn { padding: 15px 30px; border-radius: 50px; border: none; cursor: pointer; background: white; color: #ff4d6d; font-weight: bold; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        
+        .main-container { display: none; flex-direction: column; align-items: center; animation: fadeIn 1s; }
+        
+        .polaroid { position: relative; background: white; padding: 15px 15px 45px 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: rotate(-2deg); max-width: 300px; z-index: 1; }
+        
+        /* This container sits ON TOP of the photo inside the white frame */
+        #flowerFallContainer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 5; }
+        
+        .tropa-img { width: 100%; display: block; border-radius: 2px; }
+        
+        .falling-flower { position: absolute; top: -60px; width: 45px; z-index: 10; background: transparent !important; }
+        
+        .give-btn { background: #ff4d6d; color: white; border: none; padding: 15px 30px; border-radius: 30px; cursor: pointer; margin-top: 25px; font-weight: bold; }
 
         @keyframes fallDown {
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
         }
-
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
-
-    <audio id="bgMusic" loop>
-        <source src="music/song.mp3" type="audio/mp3">
-    </audio>
+    <audio id="bgMusic" loop><source src="music/song.mp3" type="audio/mp3"></audio>
 
     <div id="overlay">
-        <div class="welcome-box">
+        <div>
             <h1>Hi Tropa... ❤️</h1>
-            <p>I wish I could be there in person.</p>
-            <button onclick="openGift()">Open Your Gift 🎁</button>
+            <p>I wish I could be there with you today.</p>
+            <button id="startBtn" onclick="openGift()">Open Your Gift 🎁</button>
         </div>
     </div>
 
     <div class="main-container" id="mainContent">
         <div class="polaroid">
             <div id="flowerFallContainer"></div>
-            <img src="images/tropa1.jpg" alt="Tropa" class="tropa-img">
-            <p style="text-align:center; font-style: italic; margin-top: 15px;">My Valentine ❤️</p>
+            <img src="images/tropa1.jpg" class="tropa-img">
+            <p style="text-align:center; font-style: italic; color: #c9184a;">My Valentine ❤️</p>
         </div>
-
-        <button class="give-flower-btn" onclick="rainFlowers()">Give Tropa Flowers 🌸</button>
-        
-        <div class="message">
-            <h2>Happy Valentine's Day!</h2>
-            <p>You deserve all the flowers in the world. I love you!</p>
-        </div>
+        <button class="give-btn" onclick="rainFlowers()">Give Tropa Flowers 🌸</button>
+        <p style="color: #c9184a; margin-top: 15px;">Happy Valentine's Day!</p>
     </div>
 
     <script>
         function openGift() {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('mainContent').style.display = 'flex';
-            const music = document.getElementById('bgMusic');
-            if (music) music.play().catch(() => {});
+            document.getElementById('bgMusic').play().catch(() => {});
         }
 
         function rainFlowers() {
             const container = document.getElementById('flowerFallContainer');
-            // EXACT names from your folder
-            const flowers = ['F1.png', 'F2.png', 'F3.png', 'F4.png', 'F5.png'];
-
-            for (let i = 0; i < 40; i++) {
+            // UPDATED to lowercase to match your files: f1.png, f2.png, etc.
+            const flowers = ['f1.png', 'f2.png', 'f3.png', 'f4.png', 'f5.png'];
+            
+            for (let i = 0; i < 35; i++) {
                 setTimeout(() => {
                     const img = document.createElement('img');
-                    const randomFile = flowers[Math.floor(Math.random() * flowers.length)];
+                    const file = flowers[Math.floor(Math.random() * flowers.length)];
                     
-                    // The ?cache= forces the browser to reload the transparency correctly
-                    img.src = `images/${randomFile}?cache=${Math.random()}`;
+                    // The ?v= forces the browser to re-load the file from GitHub
+                    img.src = "images/" + file + "?v=" + Math.random();
                     img.className = 'falling-flower';
                     img.style.left = Math.random() * 90 + "%";
                     
-                    // Vary sizes
-                    const size = 30 + Math.random() * 30;
-                    img.style.width = size + "px";
-                    
                     const duration = 2 + Math.random() * 3;
-                    img.style.animation = `fallDown ${duration}s linear forwards`;
+                    img.style.animation = "fallDown " + duration + "s linear forwards";
                     
-                    // If image fails, hide it
+                    // If image is missing, hide it
                     img.onerror = function() { this.style.display = 'none'; };
                     
                     container.appendChild(img);
-                    
-                    // Clean up
                     setTimeout(() => img.remove(), duration * 1000);
-                }, i * 120);
+                }, i * 130);
             }
         }
     </script>
