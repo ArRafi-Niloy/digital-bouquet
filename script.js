@@ -1,26 +1,37 @@
 function rainFlowers() {
-    const flowerContainer = document.getElementById('flowerFallContainer');
-    // MAKE SURE THESE MATCH YOUR FILENAMES EXACTLY
+    const container = document.getElementById('flowerFallContainer');
+    
+    // Hard-coded to PNG as you requested
     const flowerFiles = ['F1.png', 'F2.png', 'F3.png', 'F4.png', 'F5.png'];
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 40; i++) { // Increased to 40 for a beautiful shower!
         setTimeout(() => {
-            const flower = document.createElement('img');
+            const img = document.createElement('img');
+            
+            // Picks one of your 5 PNGs
             const randomFile = flowerFiles[Math.floor(Math.random() * flowerFiles.length)];
             
-            flower.src = `images/${randomFile}`;
-            flower.classList.add('falling-flower');
-            flower.style.left = Math.random() * 90 + "%";
+            img.src = `images/${randomFile}`;
+            img.className = 'falling-flower';
             
+            // Randomize position
+            img.style.left = Math.random() * 90 + "%";
+            
+            // Randomize size for a natural look
+            const size = 30 + Math.random() * 25; 
+            img.style.width = size + "px";
+            
+            // Randomize fall speed
             const duration = 2 + Math.random() * 3;
-            flower.style.animation = `fallDown ${duration}s linear forwards`;
+            img.style.animation = `fallDown ${duration}s linear forwards`;
             
-            flower.onerror = function() { this.remove(); };
+            // Safety: if a specific PNG is missing, don't show a broken icon
+            img.onerror = function() { this.remove(); };
             
-            if (flowerContainer) {
-                flowerContainer.appendChild(flower);
-            }
-            setTimeout(() => flower.remove(), duration * 1000);
-        }, i * 150);
+            container.appendChild(img);
+            
+            // Remove after animation to keep the site fast
+            setTimeout(() => img.remove(), duration * 1000);
+        }, i * 120);
     }
 }
